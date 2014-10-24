@@ -1,10 +1,13 @@
 public class ChipTournament
 {
-  public static ChipsPlayer[] lineup = {new OneThirdPlayer("Player 1"), new OnebyOnePlayer("Player 4")};
+  public static ChipsPlayer[] lineup = {new OneThirdPlayer(), new OnebyOnePlayer()}; // declares and initializes an array of players
   
   
   public static void main(String[] args)
   {
+    for (int i = 0; i < lineup.length; i ++) // Automatically
+      lineup[i].setName("Player "+(i+1));
+    
     System.out.println("Ladies and gentlemen: let's get ready to rumbllllllllle!\nWelcome to the AP Comp Sci Chips Tournament!\n");
     
     int index1 = 0;
@@ -42,7 +45,7 @@ public class ChipTournament
     int index1wins = 0;
     for (int round = 0; round < 100; round ++)
     {
-      int pile = (round/2)*10+10;
+      int pile = (round/2)*5+5;
       boolean turn = round%2 > 0;
       double move1 = pile/2-.5;
       double move2 = pile/2-.5;

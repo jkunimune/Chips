@@ -1,19 +1,13 @@
 public class ChipsPlayer
 {
-  private String name = "Unnamed player";
+  public String name;
   private boolean lost = false;
   
   
   
   public ChipsPlayer()
   {
-  }
-  
-  
-  public ChipsPlayer(String newName)
-  {
-    if (name.equals("Unnamed player"))
-      name = newName;
+    name = "Unnamed player";
   }
   
   
@@ -39,5 +33,12 @@ public class ChipsPlayer
   public String name()
   {
     return name;
+  }
+  
+  
+  public void setName(String newName)
+  {
+    if (name.equals("Unnamed player"))
+      name = newName;
   }
 }

@@ -1,14 +1,8 @@
 public class /*Your class name here*/ extends ChipsPlayer
 {
-  //Optional: 
-  //String name = /*"CustomName"*/;
-  
-  
-  
-  public /*Your class name here*/(String newName)
+  public /*Your class name here*/()
   {
-    if (name.equals("Unnamed player"))
-      name = newName;
+    // Optional: name = "Custom name";
   }
   
   

@@ -1,13 +1,8 @@
 public class OneThirdPlayer extends ChipsPlayer
 {
-  String name = "One out of Three";
-  
-  
-  
-  public OneThirdPlayer(String newName)
+  public OneThirdPlayer()
   {
-    if (name.equals("Unnamed player"))
-      name = newName;
+    name = "One out of Three";
   }
   
   

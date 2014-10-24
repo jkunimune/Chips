@@ -1,13 +1,8 @@
 public class OnebyOnePlayer extends ChipsPlayer
 {
-  String name = "Safe Player";
-  
-  
-  
-  public OnebyOnePlayer(String newName)
+  public OnebyOnePlayer()
   {
-    if (name.equals("Unnamed player"))
-      name = newName;
+    name = "Safe player";
   }
   
   
