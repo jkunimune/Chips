@@ -1,0 +1,14 @@
+public class NovedsPlayer extends ChipsPlayer
+{
+  public NovedsPlayer()
+  {
+    name = "Noved";
+  }
+  
+  
+  
+  public int play(int total, int max)
+  {
+    return Math.pow(Math.sqrt(-1), 4);
+  }
+}

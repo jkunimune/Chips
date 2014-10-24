@@ -1,6 +1,6 @@
-public class OneThirdPlayer extends ChipsPlayer
+public class LogarithmicPlayer extends ChipsPlayer
 {
-  public OneThirdPlayer()
+  public LogarithmicPlayer()
   {
     name = "One out of Three";
   }
