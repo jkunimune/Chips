@@ -1,0 +1,16 @@
+public class NimPlayer extends ChipsPlayer
+{
+  public NimPlayer()
+  {
+    name = "Smarty Pants";
+  }
+  
+  
+  
+  public int play(int total, int max)
+  {
+    if (total%3 > 0)
+      return 1;
+    return 2;
+  }
+}

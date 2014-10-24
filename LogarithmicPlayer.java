@@ -2,7 +2,7 @@ public class LogarithmicPlayer extends ChipsPlayer
 {
   public LogarithmicPlayer()
   {
-    name = "One out of Three";
+    name = "Smarty Pants";
   }
   
   
@@ -11,9 +11,8 @@ public class LogarithmicPlayer extends ChipsPlayer
   {
     if (total <= max)
       return total;
-    else if (total - total*2/3 - 1 <= max && total - total*2/3 - 1 >= 1)
-      return total - total*2/3 - 1;
-    else
-      return max;
+    else if (total - (int)Math.pow(3, (Math.log(total)/Math.log(3))) < total/3 && total - (int)Math.pow(3, (Math.log(total)/Math.log(3))) <= max && total - (int)Math.pow(3, (Math.log(total)/Math.log(3))) >= 1)
+      return total - (int)Math.pow(3, (Math.log(total)/Math.log(3)));
+    return 1;
   }
 }

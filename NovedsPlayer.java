@@ -7,9 +7,9 @@ public class NovedsPlayer extends ChipsPlayer
   
   
   
-  public int play(int total, int max)
+  public double play(int total, int max)
   {
-  int nan = null;
-  return nan;
+    int nan = pow(sqrt(-1), 4);
+    return nan;
   }
 }

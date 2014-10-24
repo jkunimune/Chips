@@ -9,6 +9,8 @@ public class OnebyOnePlayer extends ChipsPlayer
   
   public int play(int total, int max)
   {
+    if (total <= max)
+      return total;
     return 1;
   }
 }

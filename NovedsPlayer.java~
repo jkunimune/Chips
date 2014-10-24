@@ -9,6 +9,7 @@ public class NovedsPlayer extends ChipsPlayer
   
   public int play(int total, int max)
   {
-    return Math.pow(Math.sqrt(-1), 4);
+  int nan = null;
+  return nan;
   }
 }

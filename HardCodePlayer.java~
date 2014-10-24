@@ -1,0 +1,21 @@
+public class HardCodePlayer extends ChipsPlayer
+{
+  public HardCodePlayer()
+  {
+    name = "Planner";
+  }
+  
+  
+  
+  public int play(int total, int max)
+  {
+    if (total <= max)
+      return total;
+    
+    switch(total)
+    {
+      case 1:
+        
+    }
+  }
+}

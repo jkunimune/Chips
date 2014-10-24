@@ -1,0 +1,22 @@
+public class LogarithmicPlayer extends ChipsPlayer
+{
+  public LogarithmicPlayer()
+  {
+    name = "Smarty Pants";
+  }
+  
+  
+  
+  public int play(int total, int max)
+  {
+    Math.pow(3, (int)Math.log(3, total));
+    
+    if (total <= max)
+      return total;
+    else if (total - Math.pow(3, (int)Math.log(3, total)) <= max && total - Math.pow(3, (int)Math.log(3, total)) >= 1)
+      return total - Math.pow(3, (int)Math.log(3, total));
+    else if (total - Math.pow(9, (int)Math.log(9, total)) <= max && total - Math.pow(9, (int)Math.log(9, total)) >= 1)
+      return total - Math.pow(3, (int)Math.log(3, total));
+      return max;
+  }
+}
