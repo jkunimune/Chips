@@ -1,0 +1,12 @@
+public class /*Your class name here*/ extends ChipsPlayer
+{
+  //Optional:
+  /*String name = "CustomName";*/
+  
+  
+  
+  public void play(int total, int max)
+  {
+    /*Your code here*/
+  }
+}

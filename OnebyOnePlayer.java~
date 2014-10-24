@@ -1,0 +1,11 @@
+public class OnebyOnePlayer extends ChipsPlayer
+{
+  String name = "Safe Player";
+  
+  
+  
+  public void play(int total, int max)
+  {
+    return 1;
+  }
+}

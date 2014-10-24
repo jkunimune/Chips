@@ -1,0 +1,73 @@
+public class ChipTournament
+{
+  ChipsPlayer lineup[] = {new OneThird(), new OneFourth(), new OneFifth(), new OneSixth()};
+  
+  
+  public static void main(String args[])
+  {
+    System.out.println("Ladies and gentlemen: let's get ready to rumbllllllllle!\nWelcome to the AP Comp Sci Chips Tournament!");
+    while (!winner)
+    {
+      
+    }
+  }
+  
+  
+  public boolean winner()
+  {
+    int x = 0;
+    for (int i = 0; i < lineup[].length; i ++)
+      if (lineup[i].playing)
+        x ++;
+    return x <= 1;
+  }
+
+
+  public int battle(int index1, int index2)
+  {
+    int index1wins = 0;
+    for (int round = 0; round < 100; round ++)
+    {
+      int pile = (round/2)*10+10;
+      boolean turn = round%2 > 0;
+      int move1 = pile/2-1;
+      int move2 = pile/2-1;
+      
+      while (pile > 0)
+      {
+        if (turn)
+        {
+          move1 = lineup[index1].play();
+          if (move1 < 1 || move1 > move2*2)
+          {
+            pile = 0;
+            turn = !turn;
+          }
+          pile -= move1;
+        }
+        
+        else
+        {
+          move2 = lineup[index2].play();
+          if (move2 < 1 || move2 > move1*2)
+          {
+            pile = 0;
+            turn = !turn;
+          }
+          pile -= move2;
+        }
+        
+        turn = !turn;
+      }
+      
+      if (!turn)
+        index1wins ++;
+    }
+    
+    System.out.print(index1+" won "+index1wins+" times, "+index2+" won "+(100-index1wins)+" times");
+    if (index1wins > 50)
+      System.out.println(index1+" wins!");
+    else
+      System.out.println(index2+" wins!");
+  }
+}
