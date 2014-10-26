@@ -2,7 +2,6 @@ public class ChipTournamentDriver
 {
   public static ChipsPlayer[] lineup = {new DivisionPlayer(), new OneFourth(), new OneFifthPlayer(), new OnebyOnePlayer(), new NimPlayer(), new LogarithmicPlayer(), new RandomPlayer()}; // declares and initializes an array of players
   
-  
   public static void main(String[] args)
   {
     for (int i = 0; i < lineup.length; i ++) // Automatically sets names to Player 1, Player 2, etc. if no custom name is given in the class
@@ -18,35 +17,38 @@ public class ChipTournamentDriver
       {
         contender = -1; // clears memory
                                            // Draws inverted tournament tree diagram
+        String text = ""; // uses a variable to minimize the number of System.prints and maximize efficiency
+                
         for (int i = 1; i < Math.pow(2, t/lineup.length); i ++) // indents names
-          System.out.print("         ");
+          text += "         ";
         
         int x = 0;
         for (int i = 0; i < lineup.length; i ++) // lists the names   
           if (lineup[i].playing() && x < (lineup.length - (int)(lineup.length - lineup.length/Math.pow(2, t/lineup.length)))/2*2)
             {
-              System.out.print(printName(i));
+              text += printName(i);
               for (int j = 1; j < Math.pow(2, t/lineup.length+1); j ++) // with proper spacing
-                System.out.print("         ");
+                text += "         ";
             
               x ++;
             }
-        System.out.print("\n"); // goes to next line
+        text += "\n"; // goes to next line
         
-        System.out.print("    ");
+        text += "    ";
         for (int i = 1; i < Math.pow(2, t/lineup.length); i ++) // indents diagram
-          System.out.print("         ");
+          text += "         ";
         
         for (int i = 1; i < winnerCount(); i += 2) // draws diagram
         {
-          System.out.print("|"); // including vertical lines
+          text += "|"; // including vertical lines
           for (int j = 1; j < 18*Math.pow(2, t/lineup.length); j ++) // underscores
-            System.out.print("_");
-          System.out.print("|");
+            text += "_";
+          text += "|";
           for (int j = 1; j < 18*Math.pow(2, t/lineup.length); j ++) // and spaces
-            System.out.print(" ");
+            text += " ";
         }
-        System.out.print("\n");
+        
+        System.out.println(text);
       }
         
       if (lineup[t%lineup.length].playing()) // skips ones that have already lost
