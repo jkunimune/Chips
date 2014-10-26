@@ -1,7 +1,8 @@
 public class ChipsPlayer
 {
-  public String name;
-  private boolean lost = false;
+  String name;
+  boolean lost = false;
+  int score = 0;
   
   
   
@@ -40,5 +41,11 @@ public class ChipsPlayer
   {
     if (name.equals("Unnamed player"))
       name = newName;
+  }
+  
+  
+  public int score()
+  {
+    return score;
   }
 }

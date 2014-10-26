@@ -1,0 +1,20 @@
+public class FibonacciPlayer extends ChipsPlayer
+{
+  public FibonacciPlayer()
+  {
+    name = "Mrs. Fibonacci";
+  }
+  
+  
+  
+  public int play(int total, int max)
+  {
+    /*Your code here*/
+  }
+  
+  
+  private int lastFibonacci(int input)
+  {
+    int phi = Math.phi;
+  }
+}

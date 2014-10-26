@@ -1,20 +1,20 @@
 public class ChipTournament
 {
-  public static ChipsPlayer[] lineup = {new NovedsPlayer(), new OnebyOnePlayer(), new OneThirdPlayer(), new OneFourth(), new OneFifthPlayer(), new RandomPlayer()}; // declares and initializes an array of players
+  public static ChipsPlayer[] lineup = {new DivisionPlayer(), new OneThirdPlayer(), new OneFourth(), new OneFifthPlayer(), new OnebyOnePlayer(), new NimPlayer(), new LogarithmicPlayer(), new HardCodePlayer()}; // declares and initializes an array of players
   
   
   public static void main(String[] args)
   {
-    for (int i = 0; i < lineup.length; i ++) // Automatically
+    for (int i = 0; i < lineup.length; i ++) // Automatically sets names to Player 1, Player 2, etc. if no custom name is given in the class
       lineup[i].setName("Player "+(i+1));
     
     System.out.println("Ladies and gentlemen: let's get ready to rumbllllllllle!\nWelcome to the AP Comp Sci Chips Tournament!\n");
     
-    int contender = -1;
+    int contender = -1; // memorizes one player class index
     int t = 0;
-    while (!winner())
+    while (!winner()) // cycles through the lineup...
     {
-      if (lineup[t%lineup.length].playing())
+      if (lineup[t%lineup.length].playing()) // skips ones that have already lost...
       {
         if (contender > -1)
         {
@@ -48,9 +48,9 @@ public class ChipTournament
     int index1wins = 0;
     int index2wins = 0;
     
-    for (int round = 0; round < 100; round ++)
+    for (int round = 0; round < 200; round ++)
     {
-      int pile = (round/2)*5+5;
+      int pile = (round/2)*1+10;
       boolean turn = round%2 > 0;
       double move1 = pile/2-.5;
       double move2 = pile/2-.5;
@@ -60,10 +60,11 @@ public class ChipTournament
         if (turn)
         {
           move1 = lineup[index1].play(pile, (int)(move2*2));
-          if (move1 < 1 || move1 > move2)
+          if (move1 < 1 || move1 > move2*2)
           {
             pile = 0;
             turn = !turn;
+            System.out.println(lineup[index1].name+" has forfeit the game!");
           }
           pile -= move1;
         }
@@ -75,6 +76,7 @@ public class ChipTournament
           {
             pile = 0;
             turn = !turn;
+            System.out.println(lineup[index2].name+" has forfeit the game!");
           }
           pile -= move2;
         }
