@@ -48,10 +48,15 @@ public class ChipTournamentDriver
             text += " ";
         }
         
-        System.out.println(text);
+        System.out.println(text); // finally prints
+        
+        long startTime = System.currentTimeMillis();
+        while (System.currentTimeMillis() - startTime < 3000) // delays 3 seconds for suspense
+        {
+        }
       }
         
-      if (lineup[t%lineup.length].playing()) // skips ones that have already lost
+      if (lineup[t%lineup.length].playing()) // skips players that have already lost
       {
         if (contender > -1) // if an index is saved in contender, then that class battles whoever is next in line
         {
@@ -59,7 +64,7 @@ public class ChipTournamentDriver
           contender = -1; // tells next while loop that it needs to get two more contenders for the next battle
         }
         else
-          contender = t%lineup.length; // if contender is -1, there is no contender waiting, so the net guy fills that slot
+          contender = t%lineup.length; // if contender is -1, there is no contender waiting, so the next guy fills that slot
       }
       t ++;
     }
@@ -70,6 +75,10 @@ public class ChipTournamentDriver
     for (int i = 0; i < lineup.length; i ++)
       if (lineup[i].playing())
         System.out.println(printName(i));
+    long startTime = System.currentTimeMillis();
+    while (System.currentTimeMillis() - startTime < 1000) // delays a second for suspense
+    {
+    }
     
     for (int i = 0; i < lineup.length; i ++) // runs through lineup to see who winner is
       if (lineup[i].playing())

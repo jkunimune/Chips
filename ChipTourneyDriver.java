@@ -9,6 +9,10 @@ public class ChipTourneyDriver
       lineup[i].setName("Player "+(i+1));
     
     System.out.println("Ladies and gentlemen: let's get ready to rumbllllllllle!\nWelcome to the AP Comp Sci Chips Tournament!\n");
+    long startTime = System.currentTimeMillis();
+    while (System.currentTimeMillis() - startTime < 3000) // delays so people can read it
+    {
+    }
     
     for (int i = 0; i < lineup.length; i ++) // battles every class against every other class
       for (int j = i+1; j < lineup.length; j ++)
@@ -43,7 +47,7 @@ public class ChipTourneyDriver
           {
             pile = 0; // if illegal move, make player 2 automatically win
             turn = !turn;
-            System.out.println(lineup[index1].name+" has forfeit the game!");
+            System.out.println(lineup[index1].name+" has forfeit a game!");
           }
           pile -= move1; // otherwise, take according number out of the pile
         }
@@ -74,16 +78,19 @@ public class ChipTourneyDriver
     if (index1wins != 99)
       System.out.print("s"); // be grammatically correct
     System.out.print(".  ");
+    
     if (index1wins > 50)
     {
       System.out.println(lineup[index1].name()+" wins!\n"); // state who won
       lineup[index1].victory(); // take loser out of running
     }
+    
     else if (index1wins < 50)
     {
       System.out.println(lineup[index2].name()+" wins!\n");
       lineup[index2].victory();
     }
+    
     else
     {
       System.out.print("It's a perfect tie!  "); // if tie
@@ -97,6 +104,11 @@ public class ChipTourneyDriver
         System.out.println("I'm giving it to "+lineup[index2].name()+".");
         lineup[index2].victory();
       }
+    }
+    
+    long startTime = System.currentTimeMillis();
+    while (System.currentTimeMillis() - startTime < 1000) // delays a second for suspense
+    {
     }
   }
 }
