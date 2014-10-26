@@ -12,43 +12,8 @@ public class ChipTournamentDriver
     
     int contender = -1; // memorizes one player class index
     int t = 0;
-    while (winnerCount() != 1) // cycles through the lineup until only one winner left (see winnerCount method)
+    while (!winner()) // cycles through the lineup until only one winner left (see winner method)
     {
-      if (t%lineup.length == 0) // runs at the start of each level (quarter finals, semifinals, etc.)
-      {
-        contender = -1; // clears memory
-                                           // Draws inverted tournament tree diagram
-        for (int i = 1; i < Math.pow(2, t/lineup.length); i ++) // indents names
-          System.out.print("         ");
-        
-        int x = 0;
-        for (int i = 0; i < lineup.length; i ++) // lists the names   
-          if (lineup[i].playing() && x < (lineup.length - (int)(lineup.length - lineup.length/Math.pow(2, t/lineup.length)))/2*2)
-            {
-              System.out.print(printName(i));
-              for (int j = 1; j < Math.pow(2, t/lineup.length+1); j ++) // with proper spacing
-                System.out.print("         ");
-            
-              x ++;
-            }
-        System.out.print("\n"); // goes to next line
-        
-        System.out.print("    ");
-        for (int i = 1; i < Math.pow(2, t/lineup.length); i ++) // indents diagram
-          System.out.print("         ");
-        
-        for (int i = 1; i < winnerCount(); i += 2) // draws diagram
-        {
-          System.out.print("|"); // including vertical lines
-          for (int j = 1; j < 18*Math.pow(2, t/lineup.length); j ++) // underscores
-            System.out.print("_");
-          System.out.print("|");
-          for (int j = 1; j < 18*Math.pow(2, t/lineup.length); j ++) // and spaces
-            System.out.print(" ");
-        }
-        System.out.print("\n");
-      }
-        
       if (lineup[t%lineup.length].playing()) // skips ones that have already lost
       {
         if (contender > -1) // if an index is saved in contender, then that class battles whoever is next in line
@@ -62,26 +27,19 @@ public class ChipTournamentDriver
       t ++;
     }
     
-    t ++;
-    for (int i = 1; i < Math.pow(2, t/lineup.length); i ++) // caps off the tree by reiterating some code from the top of the while loop
-      System.out.print("         ");
-    for (int i = 0; i < lineup.length; i ++)
-      if (lineup[i].playing())
-        System.out.println(printName(i));
-    
     for (int i = 0; i < lineup.length; i ++) // runs through lineup to see who winner is
       if (lineup[i].playing())
         System.out.println("And the victor is "+lineup[i].name()+"!"); // Congratulates them
   }
   
   
-  public static int winnerCount()
+  public static boolean winner()
   {
     int x = 0;
     for (int i = 0; i < lineup.length; i ++) // count number of players still playing
       if (lineup[i].playing())
         x ++;
-    return x; // and return how many there are
+    return x == 1; // and return whether there is only one left
   }
 
 
@@ -105,6 +63,7 @@ public class ChipTournamentDriver
           {
             pile = 0; // if illegal move, make player 2 automatically win
             turn = !turn;
+            System.out.println(lineup[index1].name+" has forfeit the game!");
           }
           pile -= move1; // otherwise, take according number out of the pile
         }
@@ -116,6 +75,7 @@ public class ChipTournamentDriver
           {
             pile = 0;
             turn = !turn;
+            System.out.println(lineup[index2].name+" has forfeit a game!");
           }
           pile -= move2;
         }
@@ -127,27 +87,36 @@ public class ChipTournamentDriver
         index1wins ++;
     }
     
+    System.out.print(lineup[index1].name()+" won "+index1wins+" time");
+    if (index1wins != 1) // state score
+      System.out.print("s");
+    System.out.print(", and "+lineup[index2].name()+" won "+(100-index1wins)+" time");
+    if (index1wins != 99)
+      System.out.print("s"); // be grammatically correct
+    System.out.print(".  ");
     if (index1wins > 50)
-      lineup[index2].loss(); // take loser out of running
-    
-    else if (index1wins < 50)
-      lineup[index1].loss();
-    
-    else // if tie
     {
-      if (Math.random()<.5) 
-        lineup[index2].loss();
-      else
-        lineup[index1].loss();
+      System.out.println(lineup[index1].name()+" wins!\n"); // state who won
+      lineup[index2].loss(); // take loser out of running
     }
-  }
-  
-  
-  public static String printName(int index) // converts the custom name of a class to a version compatible with the tree diagram
-  {
-    if (lineup[index].name().length() <= 9)                         // if it has length shorter than or equal to 9
-      return (lineup[index].name() + "         ").substring(0, 9);  // print the whole thing plus however many spaces makes it 9
+    else if (index1wins < 50)
+    {
+      System.out.println(lineup[index2].name()+" wins!\n");
+      lineup[index1].loss();
+    }
     else
-      return lineup[index].name().substring(0, 8) + "."; // otherwise, abbreviate the name
+    {
+      System.out.print("It's a perfect tie!  "); // if tie
+      if (Math.random()<.5)                      // flip a coin
+      {
+        System.out.println("I'm giving it to "+lineup[index1].name()+".");
+        lineup[index2].loss();
+      }
+      else
+      {
+        System.out.println("I'm giving it to "+lineup[index2].name()+".");
+        lineup[index1].loss();
+      }
+    }
   }
 }
