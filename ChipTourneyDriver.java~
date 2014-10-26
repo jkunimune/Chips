@@ -1,6 +1,6 @@
-public class ChipTourneyDriver
+public class ChipTournamentDriver
 {
-  public static ChipsPlayer[] lineup = {new DivisionPlayer(), new OneFourth(), new OneFifthPlayer(), new OnebyOnePlayer(), new NimPlayer(), new LogarithmicPlayer(), new RandomPlayer(), new OneThirdPlayer(), new FibonacciPlayer()}; // declares and initializes an array of players
+  public static ChipsPlayer[] lineup = {new DivisionPlayer(), new OneFourth(), new OneFifthPlayer(), new OnebyOnePlayer(), new NimPlayer(), new LogarithmicPlayer(), new RandomPlayer()}; // declares and initializes an array of players
   
   
   public static void main(String[] args)
@@ -10,16 +10,36 @@ public class ChipTourneyDriver
     
     System.out.println("Ladies and gentlemen: let's get ready to rumbllllllllle!\nWelcome to the AP Comp Sci Chips Tournament!\n");
     
-    for (int i = 0; i < lineup.length; i ++) // battles every class against every other class
-      for (int j = i+1; j < lineup.length; j ++)
-        battle(i, j);
+    int contender = -1; // memorizes one player class index
+    int t = 0;
+    while (!winner()) // cycles through the lineup until only one winner left (see winner method)
+    {
+      if (lineup[t%lineup.length].playing()) // skips ones that have already lost
+      {
+        if (contender > -1) // if an index is saved in contender, then that class battles whoever is next in line
+        {
+          battle(contender, t%lineup.length); // see battle method
+          contender = -1; // tells next while loop that it needs to get two more contenders for the next battle
+        }
+        else
+          contender = t%lineup.length; // if contender is -1, there is no contender waiting, so the net guy fills that slot
+      }
+      t ++;
+    }
     
-    int winner = 0;
-    for (int i = 1; i < lineup.length; i ++) // runs through lineup to see who has highest score
-      if (lineup[i].score() > lineup[winner].score)
-        winner = i;
-    
-    System.out.println("And the victor is "+lineup[winner].name()+"!");
+    for (int i = 0; i < lineup.length; i ++) // runs through lineup to see who winner is
+      if (lineup[i].playing())
+        System.out.println("And the victor is "+lineup[i].name()+"!"); // Congratulates them
+  }
+  
+  
+  public static boolean winner()
+  {
+    int x = 0;
+    for (int i = 0; i < lineup.length; i ++) // count number of players still playing
+      if (lineup[i].playing())
+        x ++;
+    return x == 1; // and return whether there is only one left
   }
 
 
@@ -77,12 +97,12 @@ public class ChipTourneyDriver
     if (index1wins > 50)
     {
       System.out.println(lineup[index1].name()+" wins!\n"); // state who won
-      lineup[index1].victory(); // take loser out of running
+      lineup[index2].loss(); // take loser out of running
     }
     else if (index1wins < 50)
     {
       System.out.println(lineup[index2].name()+" wins!\n");
-      lineup[index2].victory();
+      lineup[index1].loss();
     }
     else
     {
@@ -90,12 +110,12 @@ public class ChipTourneyDriver
       if (Math.random()<.5)                      // flip a coin
       {
         System.out.println("I'm giving it to "+lineup[index1].name()+".");
-        lineup[index1].victory();
+        lineup[index2].loss();
       }
       else
       {
         System.out.println("I'm giving it to "+lineup[index2].name()+".");
-        lineup[index2].victory();
+        lineup[index1].loss();
       }
     }
   }

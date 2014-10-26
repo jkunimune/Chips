@@ -23,6 +23,12 @@ public class ChipsPlayer
   {
     lost = true;
   }
+  
+  
+  public void victory()
+  {
+    score ++;
+  }
     
     
   public boolean playing()
