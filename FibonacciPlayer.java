@@ -12,6 +12,9 @@ public class FibonacciPlayer extends ChipsPlayer // uses a fibonacci algorithm t
     if (total <= max) // if possible,
       return total;     // take the whole thing
     
+    if (max == total - 1) // if first move, put the other player on a fibonacci number
+      return total - lastFibonacci(total-1);
+    
     int nextmove = total; // initialize a variable to the pile
     
     while (nextmove != lastFibonacci(nextmove)) // subtract out the greatest fibonacci number less than or equal to the variable

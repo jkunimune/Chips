@@ -1,6 +1,6 @@
 public class ChipTournamentDriver
 {
-  public static ChipsPlayer[] lineup = {new DivisionPlayer(), new OneFourth(), new OneFifthPlayer(), new OnebyOnePlayer(), new NimPlayer(), new LogarithmicPlayer(), new RandomPlayer()}; // declares and initializes an array of players
+  public static ChipsPlayer[] lineup = {new DivisionPlayer(), new OneFourth(), new OneFifthPlayer(), new OnebyOnePlayer(), new NimPlayer(), new LogarithmicPlayer(), new RandomPlayer(), new FibonacciPlayer()}; // declares and initializes an array of players
   
   public static void main(String[] args)
   {

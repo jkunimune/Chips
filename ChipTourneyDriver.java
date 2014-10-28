@@ -9,10 +9,6 @@ public class ChipTourneyDriver
       lineup[i].setName("Player "+(i+1));
     
     System.out.println("Ladies and gentlemen: let's get ready to rumbllllllllle!\nWelcome to the AP Comp Sci Chips Tournament!\n");
-    long startTime = System.currentTimeMillis();
-    while (System.currentTimeMillis() - startTime < 3000) // delays so people can read it
-    {
-    }
     
     for (int i = 0; i < lineup.length; i ++) // battles every class against every other class
       for (int j = i+1; j < lineup.length; j ++)
@@ -104,11 +100,6 @@ public class ChipTourneyDriver
         System.out.println("I'm giving it to "+lineup[index2].name()+".");
         lineup[index2].victory();
       }
-    }
-    
-    long startTime = System.currentTimeMillis();
-    while (System.currentTimeMillis() - startTime < 1000) // delays a second for suspense
-    {
     }
   }
 }
